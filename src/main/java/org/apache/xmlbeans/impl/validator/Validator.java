@@ -976,7 +976,7 @@ public final class Validator
 
         // See if I can apply a default/fixed value
 
-        if (value.length() == 0 && canApplyDefault && field != null &&
+        if (value.isEmpty() && canApplyDefault && field != null &&
             (field.isDefault() || field.isFixed())) {
             if (XmlQName.type.isAssignableFrom(type)) {
                 // TODO: will be fixed in XmlSchema 1.1

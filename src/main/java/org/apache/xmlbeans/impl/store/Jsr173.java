@@ -327,7 +327,7 @@ public class Jsr173 {
         }
 
         private static Cur toAttr(Cur c, String uri, String local) {
-            if (uri == null || local == null || local.length() == 0) {
+            if (uri == null || local == null || local.isEmpty()) {
                 throw new IllegalArgumentException();
             }
 

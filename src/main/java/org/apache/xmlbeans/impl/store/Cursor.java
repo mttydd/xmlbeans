@@ -109,7 +109,7 @@ public final class Cursor implements XmlCursor, ChangeListener {
             throw new IllegalArgumentException("Name is null");
         }
 
-        if (name.length() == 0) {
+        if (name.isEmpty()) {
             throw new IllegalArgumentException("Name is empty");
         }
 
@@ -123,7 +123,7 @@ public final class Cursor implements XmlCursor, ChangeListener {
             throw new IllegalArgumentException("Prefix is null");
         }
 
-        if (name.length() == 0) {
+        if (name.isEmpty()) {
             throw new IllegalArgumentException("Prefix is empty");
         }
 
@@ -790,7 +790,7 @@ public final class Cursor implements XmlCursor, ChangeListener {
     }
 
     public String _prefixForNamespace(String ns) {
-        if (ns == null || ns.length() == 0) {
+        if (ns == null || ns.isEmpty()) {
             throw new IllegalArgumentException("Must specify a namespace");
         }
 

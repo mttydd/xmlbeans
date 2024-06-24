@@ -1387,7 +1387,7 @@ public class StscTranslator {
                 state.error(XmlErrorCodes.NO_XSI, new Object[]{"http://www.w3.org/2001/XMLSchema-instance"}, xsdAttr.xgetName());
             }
 
-            if (qname.getNamespaceURI().length() == 0 && qname.getLocalPart().equals("xmlns")) {
+            if (qname.getNamespaceUri().isEmpty() && qname.getLocalPart().equals("xmlns")) {
                 state.error(XmlErrorCodes.NO_XMLNS, null, xsdAttr.xgetName());
             }
 

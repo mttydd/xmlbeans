@@ -156,7 +156,7 @@ public class RussianDollStrategy
 
         if (!children.isEmpty()) {
             // complex content
-            if (collapsedText.length() > 0) {
+            if (!collapsedText.isEmpty()) {
                 elemType.setContentType(Type.COMPLEX_TYPE_MIXED_CONTENT);
             } else {
                 elemType.setContentType(Type.COMPLEX_TYPE_COMPLEX_CONTENT);
@@ -743,7 +743,7 @@ public class RussianDollStrategy
     }
 
     protected void combineElementComments(Element into, Element with) {
-        if (with.getComment() != null && with.getComment().length() > 0) {
+        if (with.getComment() != null && !with.getComment().isEmpty()) {
             if (into.getComment() == null) {
                 into.setComment(with.getComment());
             } else {

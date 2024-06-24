@@ -462,7 +462,7 @@ public abstract class BaseSchemaResourceManager extends SchemaImportResolver {
         if (localFilename.endsWith(".xsd")) {
             localFilename = localFilename.substring(0, localFilename.length() - 4);
         }
-        if (localFilename.length() == 0) {
+        if (localFilename.isEmpty()) {
             localFilename = "schema";
         }
 

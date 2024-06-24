@@ -240,7 +240,7 @@ public class XmlValidationError extends XmlError
 
             sb.append(" in element ");
             sb.append(_fieldQName.getLocalPart());
-            if (_fieldQName.getNamespaceURI() != null && _fieldQName.getNamespaceURI().length() != 0)
+            if (_fieldQName.getNamespaceURI() != null && !_fieldQName.getNamespaceURI().isEmpty())
                 sb.append('@').append(_fieldQName.getNamespaceURI());
 
             return sb.toString();

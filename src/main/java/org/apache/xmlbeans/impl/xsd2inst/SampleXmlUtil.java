@@ -998,7 +998,7 @@ public class SampleXmlUtil {
             prefix = parent.prefixForNamespace(qName.getNamespaceURI());
         }
         String name;
-        if (prefix == null || prefix.length() == 0) {
+        if (prefix == null || prefix.isEmpty()) {
             name = qName.getLocalPart();
         } else {
             name = prefix + ":" + qName.getLocalPart();

@@ -233,7 +233,7 @@ class SchemaTypePool {
     }
 
     void readHandlePool(XsbReader reader) {
-        if (_handlesToRefs.size() != 0 || _started) {
+        if (!_handlesToRefs.isEmpty() || _started) {
             throw new IllegalStateException("Nonempty handle set before read");
         }
 

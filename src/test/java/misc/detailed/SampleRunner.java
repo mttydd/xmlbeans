@@ -58,7 +58,7 @@ public class SampleRunner {
                 exceptions.add(e.getCause());
             }
         }
-        if (exceptions.size() != 0) {
+        if (!exceptions.isEmpty()) {
             throw new RuntimeException(getMessageFromExceptions(exceptions));
         }
 

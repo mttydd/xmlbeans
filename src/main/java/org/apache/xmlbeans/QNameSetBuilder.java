@@ -178,7 +178,7 @@ public class QNameSetBuilder implements QNameSetSpecification, java.io.Serializa
 
     private static String[] splitList(String s)
     {
-        if (s.length() == 0)
+        if (s.isEmpty())
             return EMPTY_STRINGARRAY;
 
         List<String> result = new ArrayList<>();

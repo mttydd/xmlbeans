@@ -515,7 +515,7 @@ public class XMLChar {
      * @return true if name is a valid Name
      */
     public static boolean isValidName(String name) {
-        if (name.length() == 0)
+        if (name.isEmpty())
             return false;
         char ch = name.charAt(0);
         if( isNameStart(ch) == false)
@@ -542,7 +542,7 @@ public class XMLChar {
      * @return true if name is a valid NCName
      */
     public static boolean isValidNCName(String ncName) {
-        if (ncName.length() == 0)
+        if (ncName.isEmpty())
             return false;
         char ch = ncName.charAt(0);
         if( isNCNameStart(ch) == false)
@@ -567,7 +567,7 @@ public class XMLChar {
      * @return true if nmtoken is a valid Nmtoken
      */
     public static boolean isValidNmtoken(String nmtoken) {
-        if (nmtoken.length() == 0)
+        if (nmtoken.isEmpty())
             return false;
         for (int i = 0; i < nmtoken.length(); i++ ) {
            char ch = nmtoken.charAt(i);

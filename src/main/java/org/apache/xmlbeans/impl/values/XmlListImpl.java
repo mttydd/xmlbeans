@@ -97,7 +97,7 @@ public class XmlListImpl extends XmlObjectBase implements XmlAnySimpleType {
     private static final String[] EMPTY_STRINGARRAY = new String[0];
 
     public static String[] split_list(String s) {
-        if (s.length() == 0) {
+        if (s.isEmpty()) {
             return EMPTY_STRINGARRAY;
         }
 

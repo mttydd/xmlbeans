@@ -70,7 +70,7 @@ public class JavaQNameHolder extends XmlObjectBase {
         String namespace = _value.getNamespaceURI();
         String localPart = _value.getLocalPart();
 
-        if (namespace == null || namespace.length() == 0) {
+        if (namespace == null || namespace.isEmpty()) {
             return localPart;
         }
 

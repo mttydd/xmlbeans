@@ -334,7 +334,7 @@ public final class DomImpl {
             uri = "";
         }
 
-        if (prefix.length() > 0 && uri.length() == 0) {
+        if (!prefix.isEmpty() && uri.isEmpty()) {
             throw new NamespaceErr("Attempt to give a prefix for no namespace");
         }
 
@@ -372,7 +372,7 @@ public final class DomImpl {
             throw new IllegalArgumentException("Name is null");
         }
 
-        if (name.length() == 0) {
+        if (name.isEmpty()) {
             throw new IllegalArgumentException("Name is empty");
         }
 
@@ -415,7 +415,7 @@ public final class DomImpl {
 
             validateNcName(prefix);
 
-            if (uri.length() == 0) {
+            if (uri.isEmpty()) {
                 throw new NamespaceErr("Attempt to give a prefix for no namespace");
             }
 
@@ -432,7 +432,7 @@ public final class DomImpl {
             }
         }
 
-        if (local.length() == 0) {
+        if (local.isEmpty()) {
             throw new NamespaceErr("Invalid qualified name, no local part specified");
         }
     }
@@ -752,7 +752,7 @@ public final class DomImpl {
             throw new IllegalArgumentException("Target is null");
         }
 
-        if (target.length() == 0) {
+        if (target.isEmpty()) {
             throw new IllegalArgumentException("Target is empty");
         }
 
@@ -894,14 +894,14 @@ public final class DomImpl {
             case ELEMENT: {
                 String local = n.getLocalName();
 
-                if (local == null || local.length() == 0) {
+                if (local == null || local.isEmpty()) {
                     i = document_createElement(d, n.getNodeName());
                 } else {
                     String prefix = n.getPrefix();
-                    String name = prefix == null || prefix.length() == 0 ? local : prefix + ":" + local;
+                    String name = prefix == null || prefix.isEmpty() ? local : prefix + ":" + local;
                     String uri = n.getNamespaceURI();
 
-                    if (uri == null || uri.length() == 0) {
+                    if (uri == null || uri.isEmpty()) {
                         i = document_createElement(d, name);
                     } else {
                         i = document_createElementNS(d, uri, name);
@@ -922,14 +922,14 @@ public final class DomImpl {
             case ATTR: {
                 String local = n.getLocalName();
 
-                if (local == null || local.length() == 0) {
+                if (local == null || local.isEmpty()) {
                     i = document_createAttribute(d, n.getNodeName());
                 } else {
                     String prefix = n.getPrefix();
-                    String name = prefix == null || prefix.length() == 0 ? local : prefix + ":" + local;
+                    String name = prefix == null || prefix.isEmpty() ? local : prefix + ":" + local;
                     String uri = n.getNamespaceURI();
 
-                    if (uri == null || uri.length() == 0) {
+                    if (uri == null || uri.isEmpty()) {
                         i = document_createAttribute(d, name);
                     } else {
                         i = document_createAttributeNS(d, uri, name);
@@ -1965,7 +1965,7 @@ public final class DomImpl {
             case ELEMENT: {
                 QName name = n.getQName();
                 String prefix = name.getPrefix();
-                return prefix.length() == 0 ? name.getLocalPart() : prefix + ":" + name.getLocalPart();
+                return prefix.isEmpty() ? name.getLocalPart() : prefix + ":" + name.getLocalPart();
             }
 
             case DOCTYPE:
@@ -2938,7 +2938,7 @@ public final class DomImpl {
         // TODO - fix this *really* cheesy/bad/lousy perf impl
         //        also fix all the funcitons which follow
 
-        if (arg != null && arg.length() != 0) {
+        if (arg != null && !arg.isEmpty()) {
             _node_setNodeValue(cd, _node_getNodeValue(cd) + arg);
         }
     }

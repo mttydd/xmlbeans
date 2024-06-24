@@ -157,7 +157,7 @@ public class StscJavaizer {
     static String pickConstantName(Set<String> usedNames, String words) {
         String base = NameUtil.upperCaseUnderbar(words);
 
-        if (base.length() == 0) {
+        if (base.isEmpty()) {
             base = "X";
         }
 

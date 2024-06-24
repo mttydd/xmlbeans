@@ -562,7 +562,7 @@ public final class Locale
         for (int a = 0; a < n; a++) {
             String prefix = xsr.getNamespacePrefix(a);
 
-            if (prefix == null || prefix.length() == 0) {
+            if (prefix == null || prefix.isEmpty()) {
                 context.attr("xmlns", _xmlnsUri, null,
                     xsr.getNamespaceURI(a));
             } else {
@@ -2109,7 +2109,7 @@ public final class Locale
             return true;
         }
 
-        return prefix.length() == 0 && name.getLocalPart().equals("xmlns");
+        return prefix.isEmpty() && name.getLocalPart().equals("xmlns");
     }
 
     QName createXmlns(String prefix) {
@@ -2118,7 +2118,7 @@ public final class Locale
         }
 
         return
-            prefix.length() == 0
+            prefix.isEmpty()
                 ? makeQName(_xmlnsUri, "xmlns", "")
                 : makeQName(_xmlnsUri, prefix, "xmlns");
     }
@@ -2309,7 +2309,7 @@ public final class Locale
             // Out current parser does not error when a
             // namespace is used and not defined.  Check for these here
 
-            if (qName.indexOf(':') >= 0 && uri.length() == 0) {
+            if (qName.indexOf(':') >= 0 && uri.isEmpty()) {
                 XmlError err =
                     XmlError.forMessage("Use of undefined namespace prefix: " +
                                         qName.substring(0, qName.indexOf(':')));

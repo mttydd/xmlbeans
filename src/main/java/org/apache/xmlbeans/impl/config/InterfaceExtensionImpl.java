@@ -316,7 +316,7 @@ public class InterfaceExtensionImpl implements InterfaceExtension {
 
             _name = method.getName().asString();
             String typeParams = method.getTypeParameters().stream().map(TypeParameter::toString).collect(Collectors.joining(", "));
-            _return = ( typeParams.length() == 0 ? "" : ( " <" + typeParams + "> ") ) +
+            _return = (typeParams.isEmpty() ? "" : ( " <" + typeParams + "> ") ) +
                     replaceInner(method.getType().resolve().describe());
 
             _params = method.getParameters().stream().map(p -> p.getType().resolve().describe())

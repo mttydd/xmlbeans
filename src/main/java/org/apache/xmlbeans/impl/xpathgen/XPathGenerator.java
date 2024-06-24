@@ -63,7 +63,7 @@ public class XPathGenerator
                 node.toParent();
                 pathToParent = generateInternal(node, context, nsctx);
                 String prefix = name.getLocalPart();
-                if (prefix.length() == 0)
+                if (prefix.isEmpty())
                     return pathToParent + "/@xmlns";
                 else
                     return pathToParent + "/@xmlns:" + prefix;
@@ -119,7 +119,7 @@ public class XPathGenerator
     {
         String localName = qname.getLocalPart();
         String uri = qname.getNamespaceURI();
-        if (uri.length() == 0)
+        if (uri.isEmpty())
             return localName;
         String prefix = qname.getPrefix();
         if (prefix != null && prefix.length() > 0)
@@ -133,7 +133,7 @@ public class XPathGenerator
         prefix = ctx.getPrefix(uri);
         if (prefix == null)
             throw new XPathGenerationException("Could not obtain a prefix for URI: " + uri);
-        if (prefix.length() == 0)
+        if (prefix.isEmpty())
             throw new XPathGenerationException("Can not use default prefix in XPath for URI: " + uri);
         return prefix + ':' + localName;
     }

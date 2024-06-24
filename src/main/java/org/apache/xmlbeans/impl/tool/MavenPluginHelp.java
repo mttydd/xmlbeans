@@ -139,7 +139,7 @@ public class MavenPluginHelp extends AbstractMojo {
 
 
     private static boolean isNotEmpty(String string) {
-        return string != null && string.length() > 0;
+        return string != null && !string.isEmpty();
     }
 
     private String getValue(Node node, String elementName)

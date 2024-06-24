@@ -45,7 +45,7 @@ public final class XmlReaderToWriter
             case XMLEvent.START_ELEMENT:
                 final String localName = xmlr.getLocalName();
                 final String namespaceURI = xmlr.getNamespaceURI();
-                if (namespaceURI != null && namespaceURI.length() > 0) {
+                if (namespaceURI != null && !namespaceURI.isEmpty()) {
                     final String prefix = xmlr.getPrefix();
                     if (prefix != null)
                         writer.writeStartElement(prefix, localName,

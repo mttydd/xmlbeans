@@ -697,7 +697,7 @@ public class SchemaTypeSystemImpl extends SchemaTypeLoaderBase implements Schema
         }
 
         void readFrom(LongUTFDataInputStream input) {
-            if (intsToStrings.size() != 1 || stringsToInts.size() != 0) {
+            if (intsToStrings.size() != 1 || !stringsToInts.isEmpty()) {
                 throw new IllegalStateException();
             }
 

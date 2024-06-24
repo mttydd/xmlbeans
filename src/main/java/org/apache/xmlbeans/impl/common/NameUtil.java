@@ -463,7 +463,7 @@ public class NameUtil {
 
     public static String getPackageFromNamespace(String uri, boolean useJaxRpcRules) {
         // special case: no namespace -> package "noNamespace"
-        if (uri == null || uri.length() == 0) {
+        if (uri == null || uri.isEmpty()) {
             return "noNamespace";
         }
 
@@ -510,7 +510,7 @@ public class NameUtil {
         StringBuilder buf = new StringBuilder();
         for (String s : result) {
             String part = nonJavaKeyword(lowerCamelCase(s, useJaxRpcRules, true));
-            if (part.length() > 0) {
+            if (!part.isEmpty()) {
                 buf.append(part);
                 buf.append('.');
             }
@@ -643,7 +643,7 @@ public class NameUtil {
      * ncname is xml ncname (i.e. no colons).
      */
     private static void addCapped(List<String> list, String str) {
-        if (str.length() > 0) {
+        if (!str.isEmpty()) {
             list.add(upperCaseFirstLetter(str));
         }
     }

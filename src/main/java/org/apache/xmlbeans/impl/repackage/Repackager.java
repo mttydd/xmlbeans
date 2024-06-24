@@ -156,7 +156,7 @@ public class Repackager {
             path = path.substring(i + 1);
         }
 
-        if (path.length() > 0) {
+        if (!path.isEmpty()) {
             components.add(path);
         }
 

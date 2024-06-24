@@ -180,7 +180,7 @@ public final class REUtil {
                 System.exit( 0 );
             }
             for (int i = 0;  i < argv.length;  i ++) {
-                if (argv[i].length() == 0 || argv[i].charAt(0) != '-') {
+                if (argv[i].isEmpty() || argv[i].charAt(0) != '-') {
                     if (pattern == null)
                         pattern = argv[i];
                     else if (target == null)

@@ -51,7 +51,7 @@ class XPathStep {
     }
 
     boolean isWild() {
-        return _name.getLocalPart().length() == 0;
+        return _name.getLocalPart().isEmpty();
     }
 
     boolean match(QName name) {

@@ -177,7 +177,7 @@ public class TypeSystemHolder
         if (!element.isRef())
         {
             assert element.getName().getNamespaceURI().equals(tns) ||
-                element.getName().getNamespaceURI().length() == 0;
+                element.getName().getNamespaceUri().isEmpty();
             fillUpTypeOnElement(element.getType(), localSElement, tns);
             localSElement.setName(element.getName().getLocalPart());
         }

@@ -65,7 +65,7 @@ public class QNameHelper
         if (name == null)
             return "null";
 
-        if (name.getNamespaceURI() == null || name.getNamespaceURI().length() == 0)
+        if (name.getNamespaceURI() == null || name.getNamespaceURI().isEmpty())
             return name.getLocalPart();
 
         return name.getLocalPart() + "@" + name.getNamespaceURI();
@@ -173,7 +173,7 @@ public class QNameHelper
 
     public static String hexsafedir(QName name)
     {
-        if (name.getNamespaceURI() == null || name.getNamespaceURI().length() == 0)
+        if (name.getNamespaceURI() == null || name.getNamespaceURI().isEmpty())
             return "_nons/" + hexsafe(name.getLocalPart());
         return hexsafe(name.getNamespaceURI()) + "/" + hexsafe(name.getLocalPart());
     }
@@ -258,7 +258,7 @@ public class QNameHelper
 
     public static String readable(QName name, Map<String, String> prefixes)
     {
-        if (name.getNamespaceURI().length() == 0)
+        if (name.getNamespaceURI().isEmpty())
             return name.getLocalPart();
         String prefix = prefixes.get(name.getNamespaceURI());
         if (prefix != null)
@@ -366,7 +366,7 @@ public class QNameHelper
         {
             if (sType.getName() != null)
                 return sType.getName().getNamespaceURI();
-            if (sType.getContainerField() != null && sType.getContainerField().getName().getNamespaceURI().length() > 0)
+            if (sType.getContainerField() != null && !sType.getContainerField().getName().getNamespaceURI().isEmpty())
                 return sType.getContainerField().getName().getNamespaceURI();
             sType = sType.getOuterType();
         }

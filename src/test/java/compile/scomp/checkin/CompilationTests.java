@@ -22,7 +22,6 @@ import org.apache.xmlbeans.impl.tool.*;
 import org.apache.xmlbeans.impl.util.FilerImpl;
 import org.apache.xmlbeans.impl.xb.xsdschema.SchemaDocument;
 import org.apache.xmlbeans.impl.xb.xsdschema.TopLevelComplexType;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.platform.launcher.Launcher;
 import org.junit.platform.launcher.LauncherDiscoveryRequest;
@@ -34,7 +33,6 @@ import org.junit.platform.launcher.listeners.TestExecutionSummary;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.io.StringWriter;
 import java.net.MalformedURLException;
 import java.net.URISyntaxException;
 import java.nio.charset.StandardCharsets;
@@ -311,6 +309,23 @@ public class CompilationTests {
         params.setSrcDir(srcdir);
         params.setClassesDir(classesdir);
         params.setOutputJar(outputjar);
+        assertTrue(SchemaCompiler.compile(params), "Build failed " + fwroot);
+        assertTrue(outputjar.exists(), "Cannot find " + outputjar);
+    }
+
+    @Test
+    void testScéimreSonraí() {
+        deltree(xbeanOutput("compile/scomp/scéimresonraí"));
+        // First, compile schema
+        File srcdir = xbeanOutput("compile/scomp/scéimresonraí/src");
+        File classesdir = xbeanOutput("compile/scomp/scéimresonraí/classes");
+        File outputjar = xbeanOutput("compile/scomp/scéimresonraí/scéimresonraí.jar");
+        Parameters params = new Parameters();
+        params.setXsdFiles(xbeanCase("ScéimreSonraí/scéimresonraí.xsd"));
+        params.setSrcDir(srcdir);
+        params.setClassesDir(classesdir);
+        params.setOutputJar(outputjar);
+        params.setVerbose(true);
         assertTrue(SchemaCompiler.compile(params), "Build failed " + fwroot);
         assertTrue(outputjar.exists(), "Cannot find " + outputjar);
     }

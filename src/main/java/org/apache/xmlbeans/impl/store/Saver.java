@@ -394,7 +394,7 @@ abstract class Saver {
         // which has no namespace, then we must make sure that pushing
         // the mappings causes the default namespace to be empty
 
-        boolean ensureDefaultEmpty = name.getNamespaceURI().length() == 0;
+        boolean ensureDefaultEmpty = name.getNamespaceUri().isEmpty();
 
         pushMappings(_cur, ensureDefaultEmpty);
 
@@ -451,7 +451,7 @@ abstract class Saver {
             for (Map.Entry<String, String> entry : _preComputedNamespaces.entrySet()) {
                 String uri = entry.getKey();
                 String prefix = entry.getValue();
-                boolean considerDefault = prefix.length() == 0 && !ensureDefaultEmpty;
+                boolean considerDefault = prefix.isEmpty() && !ensureDefaultEmpty;
 
                 ensureMapping(uri, prefix, considerDefault, false);
             }
@@ -533,7 +533,7 @@ abstract class Saver {
             // I map the default to "" at the very beginning
             assert defaultUri != null;
 
-            if (defaultUri.length() > 0) {
+            if (!defaultUri.isEmpty()) {
                 addMapping("", "");
             }
         }
@@ -544,8 +544,8 @@ abstract class Saver {
         // Also, if we want to make sure that the default namespace is always "", then check that
         // here as well.
 
-        if ((prefix.length() == 0 || uri.length() > 0) &&
-            (!ensureDefaultEmpty || prefix.length() > 0 || uri.length() == 0)) {
+        if ((prefix.isEmpty() || !uri.isEmpty()) &&
+            (!ensureDefaultEmpty || !prefix.isEmpty() || uri.isEmpty())) {
             // Make sure the prefix is not already mapped in this frame
 
             for (iterateMappings(); hasMapping(); nextMapping()) {
@@ -688,13 +688,13 @@ abstract class Saver {
 
         // Can be called for no-namespaced things
 
-        if (uri.length() == 0) {
+        if (uri.isEmpty()) {
             return;
         }
 
         String prefix = _uriMap.get(uri);
 
-        if (prefix != null && (prefix.length() > 0 || !mustHavePrefix)) {
+        if (prefix != null && (!prefix.isEmpty() || !mustHavePrefix)) {
             return;
         }
 
@@ -707,7 +707,7 @@ abstract class Saver {
         //  4) ns#++
         //
 
-        if (candidatePrefix != null && candidatePrefix.length() == 0) {
+        if (candidatePrefix != null && candidatePrefix.isEmpty()) {
             candidatePrefix = null;
         }
 
@@ -747,14 +747,14 @@ abstract class Saver {
     String getNonDefaultUriMapping(String uri) {
         String prefix = _uriMap.get(uri);
 
-        if (prefix != null && prefix.length() > 0) {
+        if (prefix != null && !prefix.isEmpty()) {
             return prefix;
         }
 
         for (String s : _prefixMap.keySet()) {
             prefix = s;
 
-            if (prefix.length() > 0 && _prefixMap.get(prefix).equals(uri)) {
+            if (!prefix.isEmpty() && _prefixMap.get(prefix).equals(uri)) {
                 return prefix;
             }
         }
@@ -928,7 +928,7 @@ abstract class Saver {
 
             emit("xmlns");
 
-            if (prefix.length() > 0) {
+            if (!prefix.isEmpty()) {
                 emit(':');
                 emit(prefix);
             }
@@ -950,7 +950,7 @@ abstract class Saver {
                 String uri = mappingUri();
                 if (nsMap.containsKey(prefix)) {
                     //only overwrite the nsMap entry for the prefix if the stored entry has prefix="" and uri=""
-                    if (prefix.length() == 0 && nsMap.get(prefix).length() == 0) {
+                    if (prefix.isEmpty() && nsMap.get(prefix).isEmpty()) {
                         nsMap.put(prefix, uri);
                     }
                 } else {
@@ -1077,7 +1077,7 @@ abstract class Saver {
 
             assert uri != null;
 
-            if (uri.length() != 0) {
+            if (!uri.isEmpty()) {
                 String prefix = name.getPrefix();
                 String mappedUri = getNamespaceForPrefix(prefix);
 
@@ -1092,11 +1092,11 @@ abstract class Saver {
                 // _urpMap and _prefixMap.  This way, I would not have to look it up manually
                 // here
 
-                if (needsPrefix && prefix.length() == 0) {
+                if (needsPrefix && prefix.isEmpty()) {
                     prefix = getNonDefaultUriMapping(uri);
                 }
 
-                if (prefix.length() > 0) {
+                if (!prefix.isEmpty()) {
                     emit(prefix);
                     emit(':');
                 }
@@ -1470,7 +1470,7 @@ abstract class Saver {
         }
 
         private int replace(int i, String replacement) {
-            assert replacement.length() > 0;
+            assert !replacement.isEmpty();
 
             int dCch = replacement.length() - 1;
 
@@ -1882,7 +1882,7 @@ abstract class Saver {
 
             emit("xmlns");
 
-            if (prefix.length() > 0) {
+            if (!prefix.isEmpty()) {
                 emit(':');
                 emit(prefix);
             }
@@ -1985,7 +1985,7 @@ abstract class Saver {
 
             assert uri != null;
 
-            if (uri.length() != 0) {
+            if (!uri.isEmpty()) {
                 String prefix = name.getPrefix();
                 String mappedUri = getNamespaceForPrefix(prefix);
 
@@ -2000,17 +2000,17 @@ abstract class Saver {
                 // _urpMap and _prefixMap.  This way, I would not have to look it up manually
                 // here
 
-                if (needsPrefix && prefix.length() == 0) {
+                if (needsPrefix && prefix.isEmpty()) {
                     prefix = getNonDefaultUriMapping(uri);
                 }
 
-                if (prefix.length() > 0) {
+                if (!prefix.isEmpty()) {
                     emit(prefix);
                     emit(':');
                 }
             }
 
-            assert name.getLocalPart().length() > 0;
+            assert !name.getLocalPart().isEmpty();
 
             emit(name.getLocalPart());
         }
@@ -2565,13 +2565,13 @@ abstract class Saver {
             String uri = name.getNamespaceURI();
             String local = name.getLocalPart();
 
-            if (uri.length() == 0) {
+            if (uri.isEmpty()) {
                 return local;
             }
 
             String prefix = getUriMapping(uri);
 
-            if (prefix.length() == 0) {
+            if (prefix.isEmpty()) {
                 return local;
             }
 
@@ -2590,7 +2590,7 @@ abstract class Saver {
                 }
 
                 if (_nsAsAttrs) {
-                    if (prefix == null || prefix.length() == 0) {
+                    if (prefix == null || prefix.isEmpty()) {
                         _attributes.addAttribute("http://www.w3.org/2000/xmlns/", "xmlns", "xmlns", "CDATA", uri);
                     } else {
                         _attributes.addAttribute("http://www.w3.org/2000/xmlns/", prefix, "xmlns:" + prefix, "CDATA", uri);
@@ -3090,7 +3090,7 @@ abstract class Saver {
 
                             // Don't let xmlns:foo="" get used
 
-                            if (uri.length() > 0 || prefix.length() == 0) {
+                            if (!uri.isEmpty() || prefix.isEmpty()) {
                                 _ancestorNamespaces.add(c.getXmlnsPrefix());
                                 _ancestorNamespaces.add(c.getXmlnsUri());
                             }
@@ -3449,7 +3449,7 @@ abstract class Saver {
             int k;
 
             if (_txt != null) {
-                assert _txt.length() > 0;
+                assert !_txt.isEmpty();
                 assert !_cur.isText();
                 _txt = null;
                 _isTextCData = false;

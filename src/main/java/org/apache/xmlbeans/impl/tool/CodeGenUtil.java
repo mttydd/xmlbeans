@@ -171,10 +171,10 @@ public class CodeGenUtil {
             List<String> newargs = new ArrayList<>();
             newargs.add(args.get(0));
 
-            if (memStart != null && memStart.length() != 0) {
+            if (memStart != null && !memStart.isEmpty()) {
                 newargs.add("-J-Xms" + memStart);
             }
-            if (memMax != null && memMax.length() != 0) {
+            if (memMax != null && !memMax.isEmpty()) {
                 newargs.add("-J-Xmx" + memMax);
             }
 

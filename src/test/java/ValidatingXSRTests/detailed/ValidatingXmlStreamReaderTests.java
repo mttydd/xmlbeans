@@ -299,7 +299,7 @@ public class ValidatingXmlStreamReaderTests {
 
     private static File getCasesFile(String path)
         throws java.io.IOException {
-        if (path.length() == 0) {
+        if (path.isEmpty()) {
             throw new IOException("getCasesFile was called with path of len 0");
         }
         return JarUtil.getResourceFromJarasFile(path);

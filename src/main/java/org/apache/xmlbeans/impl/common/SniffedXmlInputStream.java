@@ -188,7 +188,7 @@ public class SniffedXmlInputStream extends BufferedInputStream {
     }
 
     private static int firstIndexOf(String s, char[] buf, int startAt, int limit) {
-        assert (s.length() > 0);
+        assert (!s.isEmpty());
         char[] lookFor = s.toCharArray();
 
         char firstchar = lookFor[0];

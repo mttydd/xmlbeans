@@ -56,7 +56,7 @@ public class XmlNameImpl implements XMLName {
   public void setPrefix(String prefix) { this.prefix = prefix; }
 
   public String getQualifiedName() {
-    if (prefix != null && prefix.length() > 0)
+    if (prefix != null && !prefix.isEmpty())
       return prefix + ":" + localName;
     else
       return localName;

@@ -198,7 +198,7 @@ public interface SchemaType extends SchemaComponent, SchemaAnnotated {
     String getFullJavaName();
 
     /**
-     * The short unqualfiied Java name for the class.
+     * The short unqualified Java name for the class.
      */
     String getShortJavaName();
 
@@ -208,7 +208,7 @@ public interface SchemaType extends SchemaComponent, SchemaAnnotated {
     String getFullJavaImplName();
 
     /**
-     * The short unqualfiied Java name for the implementation class.
+     * The short unqualified Java name for the implementation class.
      */
     String getShortJavaImplName();
 
