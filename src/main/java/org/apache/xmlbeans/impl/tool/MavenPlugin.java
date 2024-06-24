@@ -184,6 +184,14 @@ public class MavenPlugin extends AbstractMojo {
     @Parameter( defaultValue = "false" )
     private boolean copyAnn;
 
+    /**
+     * The source code encoding to use when compiling the generated sources.
+     *
+     * @since 5.2.2
+     */
+    @Parameter
+    private String sourceCodeEncoding;
+
     @Parameter
     private List<Extension> extensions;
 
@@ -301,6 +309,9 @@ public class MavenPlugin extends AbstractMojo {
             params.setOutputJar(outputJar);
             params.setDebug(debug);
             params.setExtensions(extensions);
+            if (sourceCodeEncoding != null && !sourceCodeEncoding.isEmpty()) {
+                params.setSourceCodeEncoding(sourceCodeEncoding);
+            }
 
             boolean result = SchemaCompiler.compile(params);
 

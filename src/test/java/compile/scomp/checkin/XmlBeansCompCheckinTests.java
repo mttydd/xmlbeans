@@ -36,6 +36,7 @@ public class XmlBeansCompCheckinTests {
     private final List<XmlError> xm_errors = new ArrayList<>();
     private final XmlOptions xm_opts = new XmlOptions();
     private final List<String> expBinType;
+    private final List<String> expBinShortnameType;
     private final List<String> expSrcType;
 
     public XmlBeansCompCheckinTests() {
@@ -48,6 +49,18 @@ public class XmlBeansCompCheckinTests {
             "org/apache/xmlbeans/metadata/type/http_3A_2F_2Fbaz/aType.xsb",
             "org/apache/xmlbeans/metadata/namespace/http_3A_2F_2Fbaz/xmlns.xsb",
             "org/apache/xmlbeans/metadata/javaname/baz/ElNameDocument.xsb",
+            "org/apache/xmlbeans/metadata/javaname/baz/AType.xsb"
+        );
+
+        expBinShortnameType = Arrays.asList(
+            "org/apache/xmlbeans/metadata/system/apiCompile/atypedb57type.xsb", 
+            "org/apache/xmlbeans/metadata/system/apiCompile/elnamedocument429edoctype.xsb", 
+            "org/apache/xmlbeans/metadata/system/apiCompile/atypeelement.xsb", 
+            "org/apache/xmlbeans/metadata/system/apiCompile/index.xsb", 
+            "org/apache/xmlbeans/metadata/element/http_3A_2F_2Fbaz/atypeelement.xsb", 
+            "org/apache/xmlbeans/metadata/type/http_3A_2F_2Fbaz/atypedb57type.xsb", 
+            "org/apache/xmlbeans/metadata/namespace/http_3A_2F_2Fbaz/xmlns.xsb",
+            "org/apache/xmlbeans/metadata/javaname/baz/ElNameDocument.xsb", 
             "org/apache/xmlbeans/metadata/javaname/baz/AType.xsb"
         );
 

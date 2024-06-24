@@ -54,6 +54,7 @@ public class Parameters {
     private boolean noExt;
     private boolean debug;
     private boolean copyAnn;
+    private String sourceCodeEncoding;
     private boolean incrementalSrcGen;
     private String repackage;
     private List<Extension> extensions = Collections.emptyList();
@@ -203,6 +204,10 @@ public class Parameters {
         return noAnn;
     }
 
+    public String getSourceCodeEncoding() {
+        return sourceCodeEncoding;
+    }
+
     public void setNoAnn(boolean noAnn) {
         this.noAnn = noAnn;
     }
@@ -237,6 +242,10 @@ public class Parameters {
 
     public void setDebug(boolean debug) {
         this.debug = debug;
+    }
+
+    public void setSourceCodeEncoding(String sourceCodeEncoding) {
+        this.sourceCodeEncoding = sourceCodeEncoding;
     }
 
     public String getMemoryInitialSize() {

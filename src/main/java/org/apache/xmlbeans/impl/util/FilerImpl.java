@@ -40,16 +40,7 @@ public class FilerImpl implements Filer {
     private final List<File> sourceFiles;
     private final boolean incrSrcGen;
     private Set<String> seenTypes;
-    private static final Charset CHARSET;
-
-    static {
-        Charset temp = null;
-        try {
-            temp = Charset.forName(System.getProperty("file.encoding"));
-        } catch (Exception ignored) {
-        }
-        CHARSET = temp;
-    }
+    private static final Charset DEFAULT_CHARSET = Charset.defaultCharset();
 
     public FilerImpl(File classdir, File srcdir, Repackager repackager, boolean verbose, boolean incrSrcGen) {
         this.classdir = classdir;
@@ -85,9 +76,10 @@ public class FilerImpl implements Filer {
      * Creates a new binding source file (.java) and returns a writer for it.
      *
      * @param typename fully qualified type name
+     * @param sourceCodeEncoding an optional encoding used when compiling source code (can be <code>null</code>)
      * @return a stream to write the type to
      */
-    public Writer createSourceFile(String typename) throws IOException {
+    public Writer createSourceFile(String typename, String sourceCodeEncoding) throws IOException {
         if (incrSrcGen) {
             seenTypes.add(typename);
         }
@@ -114,7 +106,7 @@ public class FilerImpl implements Filer {
             return new IncrFileWriter(sourcefile, repackager);
         } else {
             return repackager == null ?
-                writerForFile(sourcefile) :
+                writerForFile(sourcefile, sourceCodeEncoding) :
                 new RepackagingWriter(sourcefile, repackager);
         }
     }
@@ -127,15 +119,23 @@ public class FilerImpl implements Filer {
         return repackager;
     }
 
-    private static Writer writerForFile(File f) throws IOException {
-        if (CHARSET == null) {
-            return Files.newBufferedWriter(f.toPath(), StandardCharsets.ISO_8859_1);
+    private static Writer writerForFile(File f, String sourceCodeEncoding) throws IOException {
+        if (sourceCodeEncoding != null && !sourceCodeEncoding.isEmpty()) {
+            return Files.newBufferedWriter(f.toPath(), getCharset(sourceCodeEncoding));
         }
 
         OutputStream fileStream = Files.newOutputStream(f.toPath());
-        CharsetEncoder ce = CHARSET.newEncoder();
+        CharsetEncoder ce = DEFAULT_CHARSET.newEncoder();
         ce.onUnmappableCharacter(CodingErrorAction.REPORT);
         return new OutputStreamWriter(fileStream, ce);
+    }
+
+    private static Charset getCharset(final String sourceCodeEncoding) throws IOException {
+        try {
+            return Charset.forName(sourceCodeEncoding);
+        } catch (RuntimeException e) {
+            throw new IOException("Unsupported encoding: " + sourceCodeEncoding, e);
+        }
     }
 
     static class IncrFileWriter extends StringWriter {
@@ -164,7 +164,7 @@ public class FilerImpl implements Filer {
 
             if (!diffs.isEmpty()) {
                 // Diffs encountered, replace the file on disk with text from the buffer
-                try (Writer fw = writerForFile(_file)) {
+                try (Writer fw = writerForFile(_file, null)) {
                     fw.write(str);
                 }
             }
@@ -180,7 +180,7 @@ public class FilerImpl implements Filer {
         public void close() throws IOException {
             super.close();
 
-            try (Writer fw = writerForFile(_file)) {
+            try (Writer fw = writerForFile(_file, null)) {
                 fw.write(_repackager.repackage(getBuffer()).toString());
             }
         }

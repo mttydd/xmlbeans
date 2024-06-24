@@ -164,7 +164,8 @@ public class SchemaTypeSystemImpl extends SchemaTypeLoaderBase implements Schema
     private Map<String, SchemaComponent.Ref> _typeRefsByClassname = new HashMap<>();
     private Set<String> _namespaces;
 
-
+    // the additional config option
+    private String _sourceCodeEncoding ;
 
     static String nameToPathString(String nameForSystem) {
         nameForSystem = nameForSystem.replace('.', '/');
@@ -416,6 +417,10 @@ public class SchemaTypeSystemImpl extends SchemaTypeLoaderBase implements Schema
         return result;
     }
 
+    String getSourceCodeEncoding() {
+        return _sourceCodeEncoding ;
+    }
+
     @SuppressWarnings("unchecked")
     private <T extends SchemaComponent.Ref> void buildContainersHelper(Map<QName, SchemaComponent.Ref> elements, BiConsumer<SchemaContainer, T> adder) {
         elements.forEach((k, v) -> adder.accept(getContainerNonNull(k.getNamespaceURI()), (T) v));
@@ -620,6 +625,7 @@ public class SchemaTypeSystemImpl extends SchemaTypeLoaderBase implements Schema
         _annotations = state.annotations();
         _namespaces = new HashSet<>(Arrays.asList(state.getNamespaces()));
         _containers = state.getContainerMap();
+        _sourceCodeEncoding  = state.sourceCodeEncoding();
         fixupContainers();
         // Checks that data in the containers matches the lookup maps
         assertContainersSynchronized();
