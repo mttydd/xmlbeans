@@ -54,7 +54,7 @@ public class XMLNameHelper
         if (name == null)
             return "null";
 
-        if (name.getNamespaceUri() == null || name.getNamespaceUri().isEmpty())
+        if (name.getNamespaceUri() == null || name.getNamespaceURI().isEmpty())
             return name.getLocalName();
         
         return name.getLocalName() + "@" + name.getNamespaceUri();
@@ -109,7 +109,7 @@ public class XMLNameHelper
 
     public static String hexsafedir(XMLName name)
     {
-        if (name.getNamespaceUri() == null || name.getNamespaceUri().isEmpty())
+        if (name.getNamespaceUri() == null || name.getNamespaceURI().isEmpty())
             return "_nons/" + hexsafe(name.getLocalName());
         return hexsafe(name.getNamespaceUri()) + "/" + hexsafe(name.getLocalName());
     }

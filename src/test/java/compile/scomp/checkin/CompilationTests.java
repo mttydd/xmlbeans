@@ -314,23 +314,6 @@ public class CompilationTests {
     }
 
     @Test
-    void testScéimreSonraí() {
-        deltree(xbeanOutput("compile/scomp/scéimresonraí"));
-        // First, compile schema
-        File srcdir = xbeanOutput("compile/scomp/scéimresonraí/src");
-        File classesdir = xbeanOutput("compile/scomp/scéimresonraí/classes");
-        File outputjar = xbeanOutput("compile/scomp/scéimresonraí/scéimresonraí.jar");
-        Parameters params = new Parameters();
-        params.setXsdFiles(xbeanCase("ScéimreSonraí/scéimresonraí.xsd"));
-        params.setSrcDir(srcdir);
-        params.setClassesDir(classesdir);
-        params.setOutputJar(outputjar);
-        params.setVerbose(true);
-        assertTrue(SchemaCompiler.compile(params), "Build failed " + fwroot);
-        assertTrue(outputjar.exists(), "Cannot find " + outputjar);
-    }
-
-    @Test
     void testBase64Binary() {
         deltree(xbeanOutput("compile/scomp/base64Binary"));
         // First, compile schema

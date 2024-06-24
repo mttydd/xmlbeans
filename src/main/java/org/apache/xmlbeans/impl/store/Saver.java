@@ -394,7 +394,7 @@ abstract class Saver {
         // which has no namespace, then we must make sure that pushing
         // the mappings causes the default namespace to be empty
 
-        boolean ensureDefaultEmpty = name.getNamespaceUri().isEmpty();
+        boolean ensureDefaultEmpty = name.getNamespaceURI().isEmpty();
 
         pushMappings(_cur, ensureDefaultEmpty);
 

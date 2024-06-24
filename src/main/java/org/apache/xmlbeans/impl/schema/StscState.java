@@ -539,7 +539,7 @@ public class StscState {
      */
     private QName compatName(QName name, String chameleonNamespace) {
         // first check for a chameleonNamespace namespace
-        if (name.getNamespaceUri().isEmpty() && chameleonNamespace != null && chameleonNamespace.length() > 0) {
+        if (name.getNamespaceURI().isEmpty() && chameleonNamespace != null && chameleonNamespace.length() > 0) {
             name = new QName(chameleonNamespace, name.getLocalPart());
         }
 
