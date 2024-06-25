@@ -100,8 +100,10 @@ svn pd 'svn:executable' $(find -name .svn -prune -or -type f ! -name \*.sh \
      - apache-xmlbeans-src-VERSION-DATE.zip
      - apache-xmlbeans-src-VERSION-DATE.tgz
 
-  2. Grab the current deployed POM, and edit the version # and anything else that has changed:
+  2. Grab the current deployed POM, and edit the version # and anything else that has changed (eg dependencies):
      https://repository.apache.org/service/local/repo_groups/public/content/org/apache/xmlbeans/xmlbeans/VERSION/xmlbeans-VERSION.pom
+     - you should also check src/main/maven/org.apache.xmlbeans/xmlbeans/pom.xml
+     - there might be changes in that pom.xml that should be reflected in the new POM
 
   3. Sign the jars, zip, tgz, and pom with your key (gpg doesn't sign via --multifile yet):
      for f in *.jar *.zip *.tgz *.pom; do gpg --default-key 1556F3A4 -ab $f; done
