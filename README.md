@@ -43,10 +43,10 @@ To quickly get started run:
      tool does and what parameters it accepts
  
 For further information check out:
-https://xmlbeans.apache.org
-http://wiki.apache.org/xmlbeans
-./samples/<sample_name>/README.txt  for running samples
-./test/docs/*                       for running tests
+* https://xmlbeans.apache.org
+* https://wiki.apache.org/xmlbeans
+* ./samples/<sample_name>/README.txt  for running samples
+* ./test/docs/*                       for running tests
 
 XmlBeans depends on the following external libraries:
 - log4j-api [https://logging.apache.org/log4j/2.x/] for logging
