@@ -22,19 +22,19 @@
 Welcome to XMLBeans!
 
 Layout of the tree:
-- README.txt    this file
-- build.gradle  gradle build file for building XmlBeans code and utilities
-- STATUS        essential info about the project
-- xbeanenv.cmd  sets the XMLBEANS_HOME environment variable on Windows
-- xbeanenv.sh   sets the XMLBEANS_HOME environment variable on Unix
-- bin           contains useful command-line scripts for Win and Unix
-- docs          contains several documentation files
-- javadocs      API documentation
-- maven-plugin  source and documentation on using the xmlbeans2 Maven plugin
-- samples       contains ... samples
-- src           the source code for XmlBeans, organized by area
-- test          contains test cases and infrastructure
-- xkit          contains the README file for the binary distribution
+- README.md:     this file
+- build.gradle:  gradle build file for building XmlBeans code and utilities
+- STATUS:        essential info about the project
+- xbeanenv.cmd:  sets the XMLBEANS_HOME environment variable on Windows
+- xbeanenv.sh:   sets the XMLBEANS_HOME environment variable on Unix
+- bin:           contains useful command-line scripts for Win and Unix
+- docs:          contains several documentation files
+- javadocs:      API documentation
+- maven-plugin:  source and documentation on using the xmlbeans2 Maven plugin
+- samples:       contains ... samples
+- src:           the source code for XmlBeans, organized by area
+- test:          contains test cases and infrastructure
+- xkit:          contains the README file for the binary distribution
 
 To quickly get started run:
 * "gradlew jar" to build XmlBeans or
