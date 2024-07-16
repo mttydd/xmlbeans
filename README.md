@@ -48,10 +48,11 @@ For further information check out:
 * ./samples/<sample_name>/README.txt  for running samples
 * ./test/docs/*                       for running tests
 
-XmlBeans depends on the following external libraries:
+XMLBeans depends on the following external libraries:
 - log4j-api [https://logging.apache.org/log4j/2.x/] for logging
 - javaparser-core (O) [https://github.com/javaparser/javaparser]
 - Saxon-HE (O) [http://saxon.sourceforge.net/] for XPath/XQuery in XmlBeans
+
 (O) means that the library is optional
 
 For licensing information, see LICENSE.txt
