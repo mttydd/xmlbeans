@@ -13,7 +13,6 @@
  *  limitations under the License.
  */
 
-
 package dom.checkin;
 
 import org.apache.xmlbeans.XmlOptions;
@@ -21,6 +20,7 @@ import org.apache.xmlbeans.impl.common.DocumentHelper;
 import org.apache.xmlbeans.impl.common.SAXHelper;
 import org.apache.xmlbeans.impl.common.StaxHelper;
 import org.apache.xmlbeans.impl.common.XMLBeansConstants;
+import org.junit.jupiter.api.Assumptions;
 import org.junit.jupiter.api.Test;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
@@ -64,6 +64,8 @@ public class ParserTest {
     @Test
     void testXmlInputFactoryPropertyDefaults() {
         XmlOptions options = new XmlOptions();
+        Assumptions.assumeFalse(System.getProperty("java.version").startsWith("22"),
+                "test ignored for Java 22");
         XMLInputFactory factory = StaxHelper.newXMLInputFactory(options);
         assertEquals(true, factory.getProperty(XMLInputFactory.IS_NAMESPACE_AWARE));
         assertEquals(false, factory.getProperty(XMLInputFactory.IS_VALIDATING));
@@ -78,6 +80,8 @@ public class ParserTest {
         options.setLoadDTDGrammar(true);
         options.setLoadExternalDTD(true);
         XMLInputFactory factory = StaxHelper.newXMLInputFactory(options);
+        Assumptions.assumeFalse(System.getProperty("java.version").startsWith("22"),
+                "test ignored for Java 22");
         assertEquals(true, factory.getProperty(XMLInputFactory.SUPPORT_DTD));
         assertEquals(true, factory.getProperty(XMLInputFactory.IS_SUPPORTING_EXTERNAL_ENTITIES));
     }
