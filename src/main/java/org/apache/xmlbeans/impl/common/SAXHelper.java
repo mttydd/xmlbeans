@@ -15,8 +15,8 @@
 
 package org.apache.xmlbeans.impl.common;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+//import org.apache.logging.log4j.LogManager;
+//import org.apache.logging.log4j.Logger;
 import org.apache.xmlbeans.XmlOptions;
 import org.apache.xmlbeans.impl.util.ExceptionUtil;
 import org.xml.sax.EntityResolver;
@@ -35,7 +35,7 @@ import java.util.concurrent.TimeUnit;
  * Provides handy methods for working with SAX parsers and readers
  */
 public final class SAXHelper {
-    private static final Logger LOG = LogManager.getLogger(SAXHelper.class);
+//    private static final Logger LOG = LogManager.getLogger(SAXHelper.class);
     private static long lastLog;
 
     private SAXHelper() {
@@ -74,9 +74,9 @@ public final class SAXHelper {
         try {
             spf.setFeature(feature, flag);
         } catch (Exception e) {
-            LOG.atWarn().withThrowable(e).log("SAX Feature unsupported: {}", feature);
+         //   LOG.warn("SAX Feature unsupported: {}", feature);
         } catch (AbstractMethodError ame) {
-            LOG.atWarn().withThrowable(ame).log("Cannot set SAX feature {} because outdated XML parser in classpath", feature);
+         //   LOG.warn("Cannot set SAX feature {} because outdated XML parser in classpath", feature);
         }
     }
 
@@ -84,9 +84,9 @@ public final class SAXHelper {
         try {
             xmlReader.setFeature(feature, true);
         } catch (Exception e) {
-            LOG.atWarn().withThrowable(e).log("SAX Feature unsupported: {}", feature);
+         //   LOG.warn("SAX Feature unsupported: {}", feature);
         } catch (AbstractMethodError ame) {
-            LOG.atWarn().withThrowable(ame).log("Cannot set SAX feature {} because outdated XML parser in classpath", feature);
+         //   LOG.warn("Cannot set SAX feature {} because outdated XML parser in classpath", feature);
         }
     }
 
@@ -120,7 +120,7 @@ public final class SAXHelper {
                 }
                 // throttle the log somewhat as it can spam the log otherwise
                 if (System.currentTimeMillis() > lastLog + TimeUnit.MINUTES.toMillis(5)) {
-                    LOG.atWarn().withThrowable(e).log("SAX Security Manager could not be setup [log suppressed for 5 minutes]");
+                 //   LOG.warn("SAX Security Manager could not be setup [log suppressed for 5 minutes]");
                     lastLog = System.currentTimeMillis();
                 }
             }
@@ -132,7 +132,7 @@ public final class SAXHelper {
         } catch (SAXException e) {     // NOSONAR - also catch things like NoClassDefError here
             // throttle the log somewhat as it can spam the log otherwise
             if (System.currentTimeMillis() > lastLog + TimeUnit.MINUTES.toMillis(5)) {
-                LOG.atWarn().withThrowable(e).log("SAX Security Manager could not be setup [log suppressed for 5 minutes]");
+             //   LOG.warn("SAX Security Manager could not be setup [log suppressed for 5 minutes]");
                 lastLog = System.currentTimeMillis();
             }
         }

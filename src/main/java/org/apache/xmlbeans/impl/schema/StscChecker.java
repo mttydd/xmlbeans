@@ -413,8 +413,7 @@ public class StscChecker {
                         // see Particle Valid (Restriction) (3.9.6) all three bulets 2.2.1
                         return true;
                     } else if (baseModel == null || derivedModel == null) {
-                        XBeanDebug.LOG.atTrace().withThrowable(new Exception("Stacktrace"))
-                            .log("Null models that weren't caught by EMPTY_CONTENT: {} ({}), {} ({})", baseType, baseModel, sType, derivedModel);
+                        // XBeanDebug.LOG.trace("Null models that weren't caught by EMPTY_CONTENT: {} ({}), {} ({})", baseType, baseModel, sType, derivedModel);
                         state.error(XmlErrorCodes.COMPLEX_TYPE_RESTRICTION$ELEMENT_OR_MIXED_AND_VALID, null, location);
                         return false;
                     }
@@ -472,7 +471,7 @@ public class StscChecker {
                             restrictionValid = false;
                             break;
                         default:
-                            XBeanDebug.LOG.atDebug().withThrowable(new Exception("stacktrace")).log("Unknown schema type for Derived Type");
+                            // XBeanDebug.LOG.debug("Unknown schema type for Derived Type");
                             assert(false);
                     }
                     break;
@@ -490,7 +489,7 @@ public class StscChecker {
                             restrictionValid = nsRecurseCheckCardinality(baseModel, derivedModel, errors, context);
                             break;
                         default:
-                            XBeanDebug.LOG.atDebug().withThrowable(new Exception("stacktrace")).log("Unknown schema type for Derived Type");
+                            // XBeanDebug.LOG.debug("Unknown schema type for Derived Type");
                             assert(false);
                     }
                     break;
@@ -512,7 +511,7 @@ public class StscChecker {
                             restrictionValid = recurseUnordered(baseModel, derivedModel, errors, context);
                             break;
                         default:
-                            XBeanDebug.LOG.atDebug().withThrowable(new Exception("stacktrace")).log("Unknown schema type for Derived Type");
+                            // XBeanDebug.LOG.debug("Unknown schema type for Derived Type");
                             assert(false);
                     }
                     break;
@@ -534,7 +533,7 @@ public class StscChecker {
                             restrictionValid = mapAndSum(baseModel, derivedModel, errors, context);
                             break;
                         default:
-                            XBeanDebug.LOG.atDebug().withThrowable(new Exception("stacktrace")).log("Unknown schema type for Derived Type");
+                            // XBeanDebug.LOG.debug("Unknown schema type for Derived Type");
                             assert(false);
                     }
                     break;
@@ -554,12 +553,12 @@ public class StscChecker {
                             restrictionValid = recurse(baseModel, derivedModel, errors, context);
                             break;
                         default:
-                            XBeanDebug.LOG.atDebug().withThrowable(new Exception("stacktrace")).log("Unknown schema type for Derived Type");
+                            // XBeanDebug.LOG.debug("Unknown schema type for Derived Type");
                             assert(false);
                     }
                     break;
                 default:
-                    XBeanDebug.LOG.atDebug().withThrowable(new Exception("stacktrace")).log("Unknown schema type for Base Type");
+                    // XBeanDebug.LOG.debug("Unknown schema type for Base Type");
                     assert(false);
 
             }

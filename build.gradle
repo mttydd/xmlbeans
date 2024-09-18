@@ -67,7 +67,7 @@ configurations {
 ext {
     antVersion = '1.10.14'
     javaparserVersion = '3.25.10'
-    log4jVersion = '2.23.1'
+    log4jVersion = '2.10.0'
     saxonVersion = '12.4'
     androidSdkMinimum = '26'
     jdkVersion = (project.properties['jdkVersion'] ?: '8') as int
@@ -118,7 +118,8 @@ sourceSets {
 
 dependencies {
 
-    implementation "org.apache.logging.log4j:log4j-api:${log4jVersion}"
+//    implementation "org.apache.logging.log4j:log4j-api:${log4jVersion}"
+//    implementation "org.apache.logging.log4j:log4j-core:${log4jVersion}"
     implementation "net.sf.saxon:Saxon-HE:${saxonVersion}"
     implementation "org.apache.ant:ant:${antVersion}"
     implementation "com.github.javaparser:javaparser-core:${javaparserVersion}"
@@ -136,7 +137,7 @@ dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter-engine:5.10.2'
     testImplementation 'org.junit.platform:junit-platform-launcher:1.10.2'
     testImplementation "commons-io:commons-io:2.16.1"
-    testImplementation "org.apache.logging.log4j:log4j-core:${log4jVersion}"
+//    testImplementation "org.apache.logging.log4j:log4j-core:${log4jVersion}"
 //    testImplementation "org.apache.ant:ant-junit:${antVersion}"
 //    testImplementation "org.apache.ant:ant-junit4:${antVersion}"
     testImplementation 'org.hamcrest:hamcrest:2.2'
@@ -156,9 +157,9 @@ dependencies {
 
     // previous xmlbeans version is used to bootstrap necessary schema bindings
     bootstrap 'org.apache.xmlbeans:xmlbeans:5.2.0'
-    bootstrap "org.apache.logging.log4j:log4j-core:${log4jVersion}"
+//    bootstrap "org.apache.logging.log4j:log4j-core:${log4jVersion}"
 
-    genresources "org.apache.logging.log4j:log4j-core:${log4jVersion}"
+//    genresources "org.apache.logging.log4j:log4j-core:${log4jVersion}"
     genresources project.files('build/generated/classes/bootstrap/main')
     genresources project.files('build/generated/sources/bootstrap/main/resources')
     genresources project.files('src/main/resources')
@@ -166,7 +167,7 @@ dependencies {
     genresources "com.github.javaparser:javaparser-symbol-solver-core:${javaparserVersion}"
 
     // need an own configuration for Java9 builds, as the maven plugin module-config is overlapping lot
-    java9 "org.apache.logging.log4j:log4j-api:${log4jVersion}"
+//    java9 "org.apache.logging.log4j:log4j-api:${log4jVersion}"
     java9("net.sf.saxon:Saxon-HE:${saxonVersion}") {
         exclude group: 'xml-apis', module: 'xml-apis'
         exclude group: 'org.apache.httpcomponents', module: 'httpclient'
@@ -276,7 +277,7 @@ task unpackTranXml(type: Copy) {
 sTRANXML_SchemaGen.dependsOn 'unpackTranXml'
 
 java {
-    withJavadocJar()
+//    withJavadocJar()
     withSourcesJar()
 }
 
@@ -382,13 +383,13 @@ jar {
     }
 }
 
-javadocJar {
-    archiveBaseName = "xmlbeans-${XMLBeansVersion}"
-    metaInf {
-        from("$projectDir/LICENSE.txt")
-        from("$projectDir/NOTICE.txt")
-    }
-}
+//javadocJar {
+//    archiveBaseName = "xmlbeans-${XMLBeansVersion}"
+//    metaInf {
+//        from("$projectDir/LICENSE.txt")
+//        from("$projectDir/NOTICE.txt")
+//    }
+//}
 
 sourcesJar {
     archiveBaseName = "xmlbeans-${XMLBeansVersion}"
@@ -481,9 +482,9 @@ distributions {
             from(sourcesJar) {
                 into 'lib'
             }
-            from(javadocJar) {
-                into 'lib'
-            }
+//            from(javadocJar) {
+//                into 'lib'
+//            }
             from ('xkit')
             from ('samples') {
                 into 'samples'

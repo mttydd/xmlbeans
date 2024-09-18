@@ -15,8 +15,8 @@
 
 package org.apache.xmlbeans.impl.store;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+//import org.apache.logging.log4j.LogManager;
+//import org.apache.logging.log4j.Logger;
 import org.apache.xmlbeans.*;
 import org.apache.xmlbeans.XmlCursor.XmlBookmark;
 import org.apache.xmlbeans.impl.common.QNameHelper;
@@ -53,7 +53,7 @@ import static org.apache.xmlbeans.impl.values.TypeStore.*;
 @SuppressWarnings("SynchronizationOnLocalVariableOrMethodParameter")
 public final class Locale
     implements DOMImplementation, SaajCallback, XmlLocale {
-    private static final Logger LOG = LogManager.getLogger(Locale.class);
+//    private static final Logger LOG = LogManager.getLogger(Locale.class);
 
     static final int ROOT = Cur.ROOT;
     static final int ELEM = Cur.ELEM;
@@ -2514,7 +2514,7 @@ public final class Locale
                 if (ExceptionUtil.isFatal(e)) {
                     ExceptionUtil.rethrow(e);
                 }
-                LOG.atWarn().withThrowable(e).log("Secure Processing Feature is not supported");
+//             //   LOG.warn("Secure Processing Feature is not supported");
             }
             try {
                 _xr.setProperty("http://xml.org/sax/properties/declaration-handler", this);
@@ -2522,7 +2522,7 @@ public final class Locale
                 if (ExceptionUtil.isFatal(e)) {
                     ExceptionUtil.rethrow(e);
                 }
-                LOG.atWarn().withThrowable(e).log("SAX Declaration Handler is not supported");
+//             //   LOG.warn("SAX Declaration Handler is not supported");
             }
         }
 

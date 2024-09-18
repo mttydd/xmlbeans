@@ -18,12 +18,13 @@
 module org.apache.xmlbeans {
     requires java.xml;
     requires jdk.xml.dom;
-    requires org.apache.logging.log4j;
+//    requires org.apache.logging.log4j;
+//    requires log4j.api;
     requires static ant;
     requires static com.github.javaparser.core;
     requires static Saxon.HE;
 
-    exports org.apache.xmlbeans;
+//    exports org.apache.xmlbeans;
     exports org.apache.xmlbeans.soap;
     // exports org.apache.xmlbeans.impl;
     exports org.apache.xmlbeans.impl.xpathgen;

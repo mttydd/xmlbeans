@@ -97,11 +97,11 @@ public class VelocityXmlBeansDB extends Task {
 
             // Initialize Velocity
             Velocity.init();
-            log.info("Using the Velocity template, " + this.template);
+         //   LOG.info("Using the Velocity template, " + this.template);
             template = Velocity.getTemplate(this.template);
 
             // Create Schema Type System
-            log.info("Using the xml schema, " + this.schema);
+         //   LOG.info("Using the xml schema, " + this.schema);
             schemaTypeSystem = XmlBeans.compileXsd(
                     new XmlObject[] { XmlBeans.typeLoaderForClassLoader(this.getClass().getClassLoader()).
                             parse(new File(this.schema), null, null) },
@@ -115,7 +115,7 @@ public class VelocityXmlBeansDB extends Task {
             ctx.put("exportedKeyMap", createExportedKeyMap(schemaTypeSystem));
 
             // Write to the file
-            log.info("Using the output file, " + this.output);
+         //   LOG.info("Using the output file, " + this.output);
             writer = new FileWriter(new File(this.output));
             template.merge(ctx, writer);
             writer.close();

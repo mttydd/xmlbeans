@@ -29,8 +29,8 @@ import net.sf.saxon.query.XQueryExpression;
 import net.sf.saxon.str.StringView;
 import net.sf.saxon.type.BuiltInAtomicType;
 import net.sf.saxon.value.*;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+//import org.apache.logging.log4j.LogManager;
+//import org.apache.logging.log4j.Logger;
 import org.apache.xmlbeans.*;
 import org.apache.xmlbeans.impl.store.Cur;
 import org.apache.xmlbeans.impl.store.Cursor;
@@ -54,7 +54,7 @@ import java.util.ListIterator;
 import java.util.Map;
 
 public class SaxonXQuery implements XQuery {
-    private static final Logger LOG = LogManager.getLogger(SaxonXQuery.class);
+//    private static final Logger LOG = LogManager.getLogger(SaxonXQuery.class);
 
     private final XQueryExpression xquery;
     private final String contextVar;
@@ -160,7 +160,7 @@ public class SaxonXQuery implements XQuery {
             Locale.autoTypeDocument(c, null, _options);
             resultCur = new Cursor(c2);
         } catch (XmlException e) {
-            LOG.atInfo().withThrowable(e).log("Can't autotype document");
+         //   LOG.info("Can't autotype document");
         } finally {
             locale.exit();
         }

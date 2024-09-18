@@ -1,2 +1,5 @@
 
 lib/**/*.jar
+.idea
+.gradle
+build

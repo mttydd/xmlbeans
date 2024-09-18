@@ -15,8 +15,8 @@
 
 package org.apache.xmlbeans.impl.common;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+//import org.apache.logging.log4j.LogManager;
+//import org.apache.logging.log4j.Logger;
 import org.apache.xmlbeans.XmlOptions;
 import org.apache.xmlbeans.impl.util.ExceptionUtil;
 import org.w3c.dom.Document;
@@ -35,7 +35,7 @@ import java.lang.reflect.Method;
 import java.util.concurrent.TimeUnit;
 
 public final class DocumentHelper {
-    private static final Logger LOG = LogManager.getLogger(DocumentHelper.class);
+//    private static final Logger LOG = LogManager.getLogger(DocumentHelper.class);
     private static long lastLog;
 
     private DocumentHelper() {}
@@ -43,15 +43,15 @@ public final class DocumentHelper {
     private static class DocHelperErrorHandler implements ErrorHandler {
 
         public void warning(SAXParseException exception) throws SAXException {
-            LOG.atWarn().withThrowable(exception).log(asString(exception));
+         //   LOG.warn(asString(exception));
         }
 
         public void error(SAXParseException exception) throws SAXException {
-            LOG.atError().withThrowable(exception).log(asString(exception));
+         //   LOG.error(asString(exception));
         }
 
         public void fatalError(SAXParseException exception) throws SAXException {
-            LOG.atFatal().withThrowable(exception).log(asString(exception));
+         //   LOG.fatal(asString(exception));
             throw exception;
         }
 
@@ -110,9 +110,9 @@ public final class DocumentHelper {
         try {
             dbf.setFeature(feature, enabled);
         } catch (Exception e) {
-            LOG.atWarn().withThrowable(e).log("SAX Feature unsupported: {}", feature);
+         //   LOG.warn("SAX Feature unsupported: {}", feature);
         } catch (AbstractMethodError ame) {
-            LOG.atWarn().withThrowable(ame).log("Cannot set SAX feature {} because of outdated XML parser in classpath", feature);
+         //   LOG.warn("Cannot set SAX feature {} because of outdated XML parser in classpath", feature);
         }
     }
 
@@ -136,7 +136,7 @@ public final class DocumentHelper {
                     ExceptionUtil.rethrow(e);
                 }
                 if(System.currentTimeMillis() > lastLog + TimeUnit.MINUTES.toMillis(5)) {
-                    LOG.atWarn().withThrowable(e).log("DocumentBuilderFactory Security Manager could not be setup [log suppressed for 5 minutes]");
+                 //   LOG.warn("DocumentBuilderFactory Security Manager could not be setup [log suppressed for 5 minutes]");
                     lastLog = System.currentTimeMillis();
                 }
             }
@@ -150,7 +150,7 @@ public final class DocumentHelper {
                 ExceptionUtil.rethrow(e);
             }
             if(System.currentTimeMillis() > lastLog + TimeUnit.MINUTES.toMillis(5)) {
-                LOG.atWarn().withThrowable(e).log("DocumentBuilderFactory Entity Expansion Limit could not be setup [log suppressed for 5 minutes]");
+             //   LOG.warn("DocumentBuilderFactory Entity Expansion Limit could not be setup [log suppressed for 5 minutes]");
                 lastLog = System.currentTimeMillis();
             }
         }

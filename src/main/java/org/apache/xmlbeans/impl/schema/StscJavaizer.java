@@ -15,8 +15,8 @@
 
 package org.apache.xmlbeans.impl.schema;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+//import org.apache.logging.log4j.LogManager;
+//import org.apache.logging.log4j.Logger;
 import org.apache.xmlbeans.*;
 import org.apache.xmlbeans.impl.common.NameUtil;
 
@@ -26,7 +26,7 @@ import java.util.*;
 
 public class StscJavaizer {
 
-    private static final Logger LOG = LogManager.getLogger(StscJavaizer.class);
+//    private static final Logger LOG = LogManager.getLogger(StscJavaizer.class);
 
     /**
      * XMLBEANS-307
@@ -131,7 +131,7 @@ public class StscJavaizer {
                     sImpl.setUserTypeName(utype.getJavaName());
                     sImpl.setUserTypeHandlerName(utype.getStaticHandler());
                 } else {
-                    LOG.atWarn().log("Cannot match user type for {}", utype.getName());
+                 //   LOG.warn("Cannot match user type for {}", utype.getName());
                 }
             }
         }

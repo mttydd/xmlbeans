@@ -21,8 +21,8 @@ import com.github.javaparser.symbolsolver.resolution.typesolvers.JarTypeSolver;
 import com.github.javaparser.symbolsolver.resolution.typesolvers.JavaParserTypeSolver;
 import com.github.javaparser.utils.CollectionStrategy;
 import com.github.javaparser.utils.ProjectRoot;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+//import org.apache.logging.log4j.LogManager;
+//import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
 import java.nio.file.*;
@@ -38,7 +38,7 @@ import static java.nio.file.FileVisitResult.SKIP_SUBTREE;
  * for further lookups
  */
 class ChildSolverCollectionStrategy implements CollectionStrategy {
-    private static final Logger LOG = LogManager.getLogger(ChildSolverCollectionStrategy.class);
+//    private static final Logger LOG = LogManager.getLogger(ChildSolverCollectionStrategy.class);
 
     private final ParserConfiguration config;
     private final PathMatcher javaMatcher = getPathMatcher("glob:**.java");
@@ -61,7 +61,7 @@ class ChildSolverCollectionStrategy implements CollectionStrategy {
         try {
             Files.walkFileTree(path, new FileVisitor());
         } catch (IOException e) {
-            LOG.atWarn().withThrowable(e).log("Unable to walk {}",path);
+         //   LOG.warn("Unable to walk {}",path);
         }
         return roots.isEmpty() ? null : new ProjectRoot(roots.get(roots.size()-1), config);
     }
